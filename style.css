@@ -97,7 +97,7 @@ header h1 {
   overflow:hidden; 
 }
 
-/* Background GIF μέσα στο stage */
+/* Background GIF */
 #stage .background {
   position:absolute;
   top:0;
@@ -111,18 +111,20 @@ header h1 {
 /* Hero Sprites */
 .sprite { 
   position:absolute; 
-  width:160px; 
-  transition: transform 0.3s ease; 
   pointer-events:none; 
-  filter: drop-shadow(4px 6px 4px rgba(0,0,0,0.8)); 
+  filter: drop-shadow(4px 6px 4px rgba(0,0,0,0.8));
   z-index:10;
+  transition: none; /* σταθερά, χωρίς κινούμενα transitions */
 }
 
-/* Αρχική θέσεις για να κοιτιούνται: 2 αριστερά, 2 δεξιά */
-#hero1 { left: 80px; top: 200px; }
-#hero2 { left: 240px; top: 200px; }
-#hero3 { right: 240px; top: 200px; }
-#hero4 { right: 80px; top: 200px; }
+/* Τοποθέτηση δίπλα-δίπλα στην ίδια ευθεία */
+/* Αριστερά: Spider-Man (μεγαλύτερος) + Wolverine */
+#hero1 { left: 100px; top: 250px; width: 180px; transform: scaleX(1); } /* Spider-Man μεγαλωμένος */
+#hero2 { left: 260px; top: 250px; width: 140px; transform: scaleX(1); } /* Wolverine κανονικός */
+
+/* Δεξιά: Cyclops + Venom, κοιτάζουν προς τα αριστερά */
+#hero3 { right: 260px; top: 250px; width: 140px; transform: scaleX(-1); } /* Cyclops καθρέφτης */
+#hero4 { right: 100px; top: 250px; width: 160px; transform: scaleX(-1); } /* Venom καθρέφτης */
 
 /* =====================
    Intro & Spark
@@ -151,4 +153,3 @@ footer {
   font-size:12px; 
   color:#aaa; 
 }
-
