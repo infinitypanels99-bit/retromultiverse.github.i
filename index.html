@@ -1,58 +1,81 @@
-<!-- Θα συμπεριλάβω εδώ ΟΛΟ το index.html με το παλιό πλαίσιο των ηρώων, το contact box, τα πάντα όπως ήταν πριν, αλλά βελτιωμένα ώστε το "Our Comics" να ανοίγει δεύτερη σελίδα. 
--->
-
 <!DOCTYPE html>
 <html lang="el">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Retro Multiverse</title>
-<link rel="stylesheet" href="style.css" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Comicas Retro</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div id="page">
 
-<header>
-    <h1 onclick="location.reload()" style="cursor:pointer;">RETRO MULTIVERSE</h1>
+    <header>
+      <h1 id="siteTitle">RETRO MULTIVERSE</h1>
+      <div class="marquee"><span>Rare Comics • Retro Games • Mystery Boxes</span></div>
+    </header>
 
-    <div class="marquee">
-        <span>Rare Comics • Retro Games • Mystery Boxes</span>
-    </div>
-</header>
+    <nav class="menu">
+      <a href="index.html">HOME</a>
+      <a href="comics.html">COMICS</a>
+      <a href="#">RETRO GAMES</a>
+      <a href="#">MYSTERY BOX</a>
+      <a href="#contact">CONTACT</a>
+    </nav>
 
-<div class="menu">
-    <a href="index.html">Home</a>
-    <a href="comics.html">Our Comics</a>
-    <a href="#contact">Contact</a>
-</div>
+    <main>
 
-<div class="intro">
-    <p>Step into the Retro Multiverse — Where Heroes Never Fade!</p>
-</div>
+      <!-- Intro -->
+      <section class="intro">
+        <img src="images/sparkle.gif" class="spark" alt="">
+        <p>Step into the Retro Multiverse — Where Heroes Never Fade!</p>
+      </section>
 
-<!-- =========================== -->
-<!--        HERO BOX RETURNED     -->
-<!-- =========================== -->
-<div id="stage">
-    <img src="images/background.png" class="background" />
+      <!-- === HERO STAGE (ΔΕΝ ΤΟ ΠΕΙΡΑΖΩ) === -->
+      <section id="stage">
+        <img src="images/newyork.gif" class="background" alt="New York">
 
-    <img id="hero1" class="sprite" src="images/spiderman.gif" />
-    <img id="hero2" class="sprite" src="images/wolverine.gif" />
-    <img id="hero3" class="sprite" src="images/cyclops.gif" />
-    <img id="hero4" class="sprite" src="images/venom.gif" />
-</div>
+        <img src="images/spiderman.gif" class="sprite hero" id="hero1" alt="Spider-Man">
+        <img src="images/wolverine.gif" class="sprite hero" id="hero2" alt="Wolverine">
+        <img src="images/cyclops.gif" class="sprite hero" id="hero3" alt="Cyclops">
+        <img src="images/venom.gif" class="sprite hero" id="hero4" alt="Venom">
+      </section>
 
-<!-- ================================= -->
-<!--   CONTACT BOX (Πάνω από footer)   -->
-<!-- ================================= -->
-<div id="contact" class="contact-box">
-    <h2>Contact Us</h2>
-    <p>Send us your questions, orders, or feedback!</p>
-    <p>Email: retro.multiverse@gmail.com</p>
-</div>
+      <!-- === OUR COMICS PANEL === -->
+      <section id="ourComics">
+        <h2>OUR COMICS</h2>
+        <p>Fresh arrivals, rare classics & retro gems.</p>
 
-<footer>
-    © 2025 Retro Multiverse — All Rights Reserved
-</footer>
+        <div class="comics-grid">
+          <div class="comic-item">
+            <img src="images/comic1.gif" alt="">
+            <p>Spider-Man #1</p>
+          </div>
 
+          <div class="comic-item">
+            <img src="images/comic2.gif" alt="">
+            <p>Wolverine Classic</p>
+          </div>
+
+          <div class="comic-item">
+            <img src="images/comic3.gif" alt="">
+            <p>X-Men Retro Issue</p>
+          </div>
+        </div>
+
+        <a class="viewMore" href="comics.html">View All Comics →</a>
+      </section>
+
+    </main>
+
+    <footer id="contact">
+      <p>Email: comicas.retros@gmail.com</p>
+      <p>Instagram: @comicas</p>
+      <p>TikTok: @comicas</p>
+      <p>Best viewed in 800x600 • Comicas ©</p>
+    </footer>
+
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
