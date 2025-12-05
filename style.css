@@ -52,16 +52,25 @@ header h1 {
 /* =====================
    Marquee / Slogan
 ===================== */
+.marquee {
+  margin-top: 6px;
+  overflow: hidden;
+  height: 26px;
+  border: none; /* αν υπήρχε πλαίσιο */
+}
+
 .marquee span {
-  font-family: 'Komigo3D', Impact, sans-serif; /* ίδιο font με τίτλο */
-  font-size: 18px;
-  color: gold; /* χρυσό για να ξεχωρίζει */
-  -webkit-text-stroke: 1px black; /* μαύρο περίγραμμα */
   display: inline-block;
   white-space: nowrap;
   animation: scroll 12s linear infinite;
+  color: #ffd700; /* χρυσό */
+  font-weight: bold;
 }
 
+@keyframes scroll {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
 /* =====================
    Menu / Tabs
 ===================== */
