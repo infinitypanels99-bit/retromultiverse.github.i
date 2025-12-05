@@ -87,19 +87,19 @@ header h1 {
    Stage / Sprites
 ===================== */
 #stage { 
-  position:relative; 
-  width:100%; 
-  height:420px; 
-  max-width:1000px; 
-  margin:14px auto; 
-  border:3px solid #111; 
+  position: relative; 
+  width: 100%; 
+  height: 420px; 
+  max-width: 1000px; 
+  margin: 14px auto; 
+  border: 3px solid #111; 
   background: rgba(0,0,0,0.45); 
-  overflow:hidden; 
+  overflow: hidden; 
 }
 
 /* Background GIF */
 #stage .background {
-  position:absolute;
+  position: absolute;
   top:0;
   left:0;
   width:100%;
@@ -110,22 +110,24 @@ header h1 {
 
 /* Hero Sprites */
 .sprite { 
-  position:absolute; 
+  position: absolute; 
   pointer-events:none; 
   filter: drop-shadow(4px 6px 4px rgba(0,0,0,0.8));
   z-index:10;
-  transition: none; /* σταθερά, χωρίς κινούμενα transitions */
+  transition: none; /* σταθερά, χωρίς κίνηση */
 }
 
-/* Τοποθέτηση δίπλα-δίπλα στην ίδια ευθεία */
+/* =====================
+   Τοποθέτηση δίπλα-δίπλα στην ίδια ευθεία
+===================== */
+
 /* Αριστερά: Spider-Man + Wolverine */
-#hero1 { left: 100px; top: 220px; width: 180px; transform: scaleX(1); }
-#hero2 { left: 280px; top: 200px; width: 140px; transform: scaleX(1); }
+#hero1 { left: 50px; top: 220px; width: 180px; transform: scaleX(1); } /* Spider-Man */
+#hero2 { left: 250px; top: 200px; width: 140px; transform: scaleX(1); } /* Wolverine πιο ψηλά */
 
 /* Δεξιά: Cyclops + Venom */
-#hero3 { right: 280px; top: 200px; width: 160px; transform: scaleX(-1); }
-#hero4 { right: 100px; top: 220px; width: 180px; transform: scaleX(-1); }
-
+#hero3 { right: 250px; top: 200px; width: 160px; transform: scaleX(-1); } /* Cyclops πιο ψηλά */
+#hero4 { right: 50px; top: 220px; width: 180px; transform: scaleX(-1); } /* Venom */
 
 /* =====================
    Intro & Spark
