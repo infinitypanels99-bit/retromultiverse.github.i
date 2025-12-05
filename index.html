@@ -6,76 +6,69 @@
   <title>Comicas Retro</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-  <div id="page">
+<div id="page">
 
-    <header>
-      <h1 id="siteTitle">RETRO MULTIVERSE</h1>
-      <div class="marquee"><span>Rare Comics • Retro Games • Mystery Boxes</span></div>
-    </header>
+  <header>
+    <h1 id="title">RETRO MULTIVERSE</h1>
+    <div class="marquee"><span>Rare Comics • Retro Games • Mystery Boxes</span></div>
+  </header>
 
-    <nav class="menu">
-      <a href="index.html">HOME</a>
-      <a href="comics.html">COMICS</a>
-      <a href="#">RETRO GAMES</a>
-      <a href="#">MYSTERY BOX</a>
-      <a href="#contact">CONTACT</a>
-    </nav>
+  <nav class="menu">
+    <a href="index.html" id="homeBtn">HOME</a>
+    <a href="comics.html">COMICS</a>
+    <a href="#">RETRO GAMES</a>
+    <a href="#">MYSTERY BOX</a>
+    <a href="#contact-box">CONTACT</a>
+  </nav>
 
-    <main>
+  <main>
 
-      <!-- Intro -->
-      <section class="intro">
-        <img src="images/sparkle.gif" class="spark" alt="">
-        <p>Step into the Retro Multiverse — Where Heroes Never Fade!</p>
-      </section>
+    <section class="intro">
+      <img src="images/sparkle.gif" class="spark" alt="">
+      <p>Step into the Retro Multiverse — Where Heroes Never Fade!</p>
+    </section>
 
-      <!-- === HERO STAGE (ΔΕΝ ΤΟ ΠΕΙΡΑΖΩ) === -->
-      <section id="stage">
-        <img src="images/newyork.gif" class="background" alt="New York">
+    <section id="stage">
+      <img src="images/newyork.gif" class="background" alt="New York">
 
-        <img src="images/spiderman.gif" class="sprite hero" id="hero1" alt="Spider-Man">
-        <img src="images/wolverine.gif" class="sprite hero" id="hero2" alt="Wolverine">
-        <img src="images/cyclops.gif" class="sprite hero" id="hero3" alt="Cyclops">
-        <img src="images/venom.gif" class="sprite hero" id="hero4" alt="Venom">
-      </section>
+      <img src="images/spiderman.gif" class="sprite hero" id="hero1" alt="">
+      <img src="images/wolverine.gif" class="sprite hero" id="hero2" alt="">
+      <img src="images/cyclops.gif" class="sprite hero" id="hero3" alt="">
+      <img src="images/venom.gif" class="sprite hero" id="hero4" alt="">
+    </section>
 
-      <!-- === OUR COMICS PANEL === -->
-      <section id="ourComics">
-        <h2>OUR COMICS</h2>
-        <p>Fresh arrivals, rare classics & retro gems.</p>
+    <!-- OUR COMICS BOX -->
+    <section id="our-comics-box" class="info-box">
+      <h2>OUR COMICS</h2>
+      <div class="comics-grid">
+        <div class="comic-item">Amazing Spider-Man #1</div>
+        <div class="comic-item">X-Men Vol.1 Classic</div>
+        <div class="comic-item">Wolverine Limited Series</div>
+        <div class="comic-item">Venom: Lethal Protector</div>
+      </div>
+    </section>
 
-        <div class="comics-grid">
-          <div class="comic-item">
-            <img src="images/comic1.gif" alt="">
-            <p>Spider-Man #1</p>
-          </div>
-
-          <div class="comic-item">
-            <img src="images/comic2.gif" alt="">
-            <p>Wolverine Classic</p>
-          </div>
-
-          <div class="comic-item">
-            <img src="images/comic3.gif" alt="">
-            <p>X-Men Retro Issue</p>
-          </div>
-        </div>
-
-        <a class="viewMore" href="comics.html">View All Comics →</a>
-      </section>
-
-    </main>
-
-    <footer id="contact">
-      <p>Email: comicas.retros@gmail.com</p>
+    <!-- CONTACT BOX -->
+    <section id="contact-box" class="info-box">
+      <h2>CONTACT</h2>
+      <p>Email: retrocomics@gmail.com</p>
       <p>Instagram: @comicas</p>
-      <p>TikTok: @comicas</p>
-      <p>Best viewed in 800x600 • Comicas ©</p>
-    </footer>
+      <p>We ship worldwide!</p>
+    </section>
 
-  </div>
+  </main>
 
-  <script src="script.js"></script>
+  <footer>
+    <p>Best viewed in 800x600 • Comicas ©</p>
+  </footer>
+</div>
+
+<script>
+  // Refresh button στον τίτλο
+  document.getElementById("title").onclick = () => location.reload();
+</script>
+
 </body>
 </html>
