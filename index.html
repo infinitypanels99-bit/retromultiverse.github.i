@@ -1,59 +1,58 @@
+<!-- Θα συμπεριλάβω εδώ ΟΛΟ το index.html με το παλιό πλαίσιο των ηρώων, το contact box, τα πάντα όπως ήταν πριν, αλλά βελτιωμένα ώστε το "Our Comics" να ανοίγει δεύτερη σελίδα. 
+-->
+
 <!DOCTYPE html>
 <html lang="el">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Comicas Retro - Comics</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Retro Multiverse</title>
+<link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div id="page">
-    <header>
-      <h1>COMICAS • RETRO SHOP</h1>
-      <div class="marquee"><span>Blast from the Past — Into the Neon Future!</span></div>
-    </header>
 
-    <nav class="menu">
-      <a href="index.html">HOME</a>
-      <a href="comics.html">COMICS</a>
-      <a href="#">RETRO GAMES</a>
-      <a href="#">MYSTERY BOX</a>
-      <a href="#contact">CONTACT</a>
-    </nav>
+<header>
+    <h1 onclick="location.reload()" style="cursor:pointer;">RETRO MULTIVERSE</h1>
 
-    <main>
-      <section class="products">
-        <h2>Our Comics</h2>
-        <div class="product-list">
-          <div class="product">
-            <img src="images/comic1.jpg" alt="Comic 1">
-            <h3>Spider-Man #1</h3>
-            <p>Classic Spider-Man story!</p>
-            <p class="price">€12.99</p>
-          </div>
+    <div class="marquee">
+        <span>Rare Comics • Retro Games • Mystery Boxes</span>
+    </div>
+</header>
 
-          <div class="product">
-            <img src="images/comic2.jpg" alt="Comic 2">
-            <h3>X-Men: Wolverine</h3>
-            <p>Wolverine’s first solo adventure.</p>
-            <p class="price">€14.50</p>
-          </div>
+<div class="menu">
+    <a href="index.html">Home</a>
+    <a href="comics.html">Our Comics</a>
+    <a href="#contact">Contact</a>
+</div>
 
-          <div class="product">
-            <img src="images/comic3.jpg" alt="Comic 3">
-            <h3>Venom #5</h3>
-            <p>The symbiote strikes again!</p>
-            <p class="price">€11.00</p>
-          </div>
-          
-          <!-- Μπορείς να προσθέσεις όσα προϊόντα θέλεις -->
-        </div>
-      </section>
-    </main>
+<div class="intro">
+    <p>Step into the Retro Multiverse — Where Heroes Never Fade!</p>
+</div>
 
-    <footer>
-      <p>Best viewed in 800x600 • Comicas ©</p>
-    </footer>
-  </div>
+<!-- =========================== -->
+<!--        HERO BOX RETURNED     -->
+<!-- =========================== -->
+<div id="stage">
+    <img src="images/background.png" class="background" />
+
+    <img id="hero1" class="sprite" src="images/spiderman.gif" />
+    <img id="hero2" class="sprite" src="images/wolverine.gif" />
+    <img id="hero3" class="sprite" src="images/cyclops.gif" />
+    <img id="hero4" class="sprite" src="images/venom.gif" />
+</div>
+
+<!-- ================================= -->
+<!--   CONTACT BOX (Πάνω από footer)   -->
+<!-- ================================= -->
+<div id="contact" class="contact-box">
+    <h2>Contact Us</h2>
+    <p>Send us your questions, orders, or feedback!</p>
+    <p>Email: retro.multiverse@gmail.com</p>
+</div>
+
+<footer>
+    © 2025 Retro Multiverse — All Rights Reserved
+</footer>
+
 </body>
 </html>
