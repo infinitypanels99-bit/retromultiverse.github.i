@@ -1,176 +1,158 @@
 /* =====================
-   FONTS
+   Fonts
 ===================== */
 @font-face {
-  font-family: 'Komigo3D';
+  font-family: 'Komika';
   src: url('fonts/Komigo3D.ttf') format('truetype');
 }
-
 @font-face {
-  font-family: 'SuperComic';
-  src: url('fonts/SuperComic.ttf') format('truetype');
+  font-family: 'Bangers';
+  src: url('fonts/Super Comic.ttf') format('truetype');
 }
 
 /* =====================
-   BASE
+   Base Styling
 ===================== */
-html, body {
-  margin:0;
-  padding:0;
-  background:#021224;
-  font-family:'SuperComic', Arial, sans-serif;
-  color:#e6f7ff;
+* { box-sizing: border-box; }
+
+html, body { 
+  height:100%; 
+  margin:0; 
+  padding:0; 
+  background:#021224; 
+  font-family: "Komika", "Courier New", monospace; 
+  color:#e6f7ff; 
 }
 
 body {
-  background-image:url('images/bg_tile.jpg');
-  background-repeat:repeat;
-  background-size:200px;
-}
-
-* { box-sizing: border-box; }
-
-/* =====================
-   HEADER
-===================== */
-header {
-  text-align:center;
-  padding:18px 10px;
-  border-bottom:4px solid #a00;
-  background: linear-gradient(#001f3f, #000);
-}
-
-header h1 {
-  font-family:'Komigo3D';
-  color:#ff4444;
-  font-size:60px;
-  margin:0;
-  cursor:pointer;
+  background-image: url('images/bg_tile.jpg');
+  background-repeat: repeat;
+  background-size: 200px;
 }
 
 /* =====================
-   MARQUEE SCROLL
+   Header
 ===================== */
-.marquee {
-  margin-top:6px;
-  overflow:hidden;
-  height:26px;
+header { 
+  text-align:center; 
+  padding:18px 10px; 
+  border-bottom: 4px solid #a00; 
+  background: linear-gradient(#001f3f, #000); 
 }
 
-.marquee span {
-  display:inline-block;
-  white-space:nowrap;
-  animation: scroll 12s linear infinite;
-  font-family:'SuperComic';
-  color:#ffd700;
+header h1 { 
+  font-family: 'Bangers', Impact, sans-serif; 
+  color:#ff4444; 
+  font-size:48px; 
+  text-shadow: 3px 3px 0 #000; 
+  margin:0; 
 }
 
-@keyframes scroll {
-  0% {transform:translateX(100%);}
-  100% {transform:translateX(-100%);}
+.marquee { 
+  margin-top:6px; 
+  overflow:hidden; 
+  height:26px; 
+}
+
+.marquee span { 
+  display:inline-block; 
+  white-space:nowrap; 
+  animation: scroll 12s linear infinite; 
+  color:#ffd700; 
+  font-weight:bold; 
+}
+
+@keyframes scroll { 
+  0%{transform:translateX(100%);} 
+  100%{transform:translateX(-100%);} 
 }
 
 /* =====================
-   MENU TABS
+   Menu
 ===================== */
-.menu {
-  display:flex;
-  justify-content:center;
-  gap:12px;
-  margin:12px 0;
-}
+.menu { display:flex; justify-content:center; gap:12px; margin:12px 0; }
 
 .menu a {
-  padding:8px 14px;
-  border:2px solid #003366;
-  background:#092240;
-  color:#00c0ff;
-  text-decoration:none;
-  font-weight:bold;
+  padding:8px 14px; 
+  border:2px solid #003366; 
+  background:rgba(255,255,255,0.04);
+  color:#00c0ff; 
+  text-decoration:none; 
+  font-weight:bold; 
+  text-shadow:1px 1px 0 #000;
   box-shadow: 0 2px 0 rgba(0,0,0,0.6);
-  border-radius:4px;
 }
 
 /* =====================
-   INTRO
+   Stage / Sprites
 ===================== */
-.intro {
-  text-align:center;
-  padding:10px;
-  font-size:20px;
-  color:#fff;
+#stage { 
+  position: relative; 
+  width: 100%; 
+  height: 420px; 
+  max-width: 1000px; 
+  margin: 14px auto; 
+  border: 3px solid #111; 
+  background: rgba(0,0,0,0.45); 
+  overflow: hidden; 
 }
 
-.spark {
-  position:absolute;
-  width:48px;
-  left:8px;
-  top:6px;
-}
-
-/* =====================
-   STAGE (HERO FRAME)
-===================== */
-#stage {
-  position:relative;
-  width:100%;
-  height:420px;
-  max-width:1000px;
-  margin:14px auto;
-  border:3px solid #111;
-  background:rgba(0,0,0,0.45);
-  overflow:hidden;
-}
-
+/* Background GIF */
 #stage .background {
-  position:absolute;
-  width:100%;
-  height:100%;
-  object-fit:cover;
+  position: absolute;
   top:0;
   left:0;
+  width:100%;
+  height:100%;
   z-index:0;
+  object-fit: cover;
 }
 
-.sprite {
-  position:absolute;
-  pointer-events:none;
+/* Hero Sprites */
+.sprite { 
+  position: absolute; 
+  pointer-events:none; 
   filter: drop-shadow(4px 6px 4px rgba(0,0,0,0.8));
   z-index:10;
-}
-
-/* ORIGINAL CORRECT HERO POSITIONS */
-#hero1 { left: 50px; top: 220px; width: 180px; }
-#hero2 { left: 250px; top: 200px; width: 140px; }
-#hero3 { right: 250px; top: 200px; width: 160px; }
-#hero4 { right: 50px; top: 220px; width: 180px; }
-
-/* =====================
-   CONTACT SECTION
-===================== */
-#contact-section {
-  max-width:1000px;
-  margin:30px auto;
-  padding:20px;
-  border:3px solid #444;
-  background:#00000088;
-  color:#fff;
-  text-align:center;
-  border-radius:6px;
-}
-
-#contact-section h2 {
-  font-family:'SuperComic';
-  font-size:32px;
-  margin-bottom:10px;
+  transition: none; /* σταθερά, χωρίς κίνηση */
 }
 
 /* =====================
-   FOOTER
+   Τοποθέτηση δίπλα-δίπλα στην ίδια ευθεία
 ===================== */
-footer {
-  text-align:center;
-  padding:10px;
-  color:#aaa;
-  font-size:12px;
+
+/* Αριστερά: Spider-Man + Wolverine */
+#hero1 { left: 50px; top: 220px; width: 180px; transform: scaleX(1); } /* Spider-Man */
+#hero2 { left: 250px; top: 200px; width: 140px; transform: scaleX(1); } /* Wolverine πιο ψηλά */
+
+/* Δεξιά: Cyclops + Venom */
+#hero3 { right: 250px; top: 200px; width: 160px; transform: scaleX(-1); } /* Cyclops πιο ψηλά */
+#hero4 { right: 50px; top: 220px; width: 180px; transform: scaleX(-1); } /* Venom */
+
+/* =====================
+   Intro & Spark
+===================== */
+.intro { 
+  text-align:center; 
+  padding:10px; 
+  color:#ffd; 
+  font-size:18px; 
+}
+
+.spark { 
+  position:absolute; 
+  left:8px; 
+  top:6px; 
+  width:48px; 
+  opacity:0.85; 
+}
+
+/* =====================
+   Footer
+===================== */
+footer { 
+  text-align:center; 
+  padding:8px; 
+  font-size:12px; 
+  color:#aaa; 
 }
