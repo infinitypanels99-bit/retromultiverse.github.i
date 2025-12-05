@@ -16,13 +16,13 @@
 ===================== */
 * { box-sizing: border-box; }
 
-html, body { 
-  height:100%; 
-  margin:0; 
-  padding:0; 
-  background:#021224; 
-  font-family: "Super Comic", monospace;
-  color:#ffffff; 
+html, body {
+  height:100%;
+  margin:0;
+  padding:0;
+  background:#021224;
+  font-family: "Super Comic", monospace; /* default for most text */
+  color:#ffffff;
 }
 
 body {
@@ -34,126 +34,215 @@ body {
 /* =====================
    Header
 ===================== */
-header { 
-  text-align:center; 
-  padding:18px 10px; 
-  border-bottom: 4px solid #a00; 
-  background: linear-gradient(#001f3f, #000); 
+header {
+  text-align:center;
+  padding:18px 10px;
+  border-bottom: 4px solid #a00;
+  background: linear-gradient(#001f3f, #000);
 }
 
-header h1 { 
-  font-family: 'Komigo3D', Impact, sans-serif; 
-  color:#ff4444; /* Κόκκινος τίτλος */
-  font-size:48px; 
-  margin:0; 
-  text-shadow: 2px 2px 2px #000; /* ελαφριά σκιά */
+/* Title: Komigo3D, red, clean */
+header h1 {
+  font-family: 'Komigo3D', Impact, sans-serif;
+  color:#ff4444;
+  font-size:48px;
+  margin:0;
+  text-shadow: none;
   -webkit-text-stroke: 0;
+  line-height:1;
 }
 
 /* =====================
-   Marquee
+   Marquee — κάτω από τον τίτλο
+   (χρήση Super Comic, χρυσό με μαύρο stroke για ευκρίνεια)
 ===================== */
-.marquee { 
-  margin-top:6px; 
-  overflow:hidden; 
-  height:26px; 
+.marquee {
+  margin-top:6px;
+  overflow:hidden;
+  height:34px; /* λίγο πιο ψηλό ώστε να χωράει το font */
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:4px 0;
 }
 
-.marquee span { 
-  display:inline-block; 
-  white-space:nowrap; 
-  animation: scroll 12s linear infinite; 
-  font-family: 'Komigo3D', Impact, sans-serif; /* ίδια με τον τίτλο */
-  font-weight:bold; 
+.marquee span {
+  display:inline-block;
+  white-space:nowrap;
+  animation: scroll 12s linear infinite;
+  font-family: 'Super Comic', monospace; /* Η "άλλη" γραμματοσειρά όπως ζήτησες */
+  font-weight:bold;
   color:#ffd700; /* χρυσό */
-  -webkit-text-stroke: 1px #000; /* μαύρο stroke */
-  text-shadow: 2px 2px 1px #000; /* ελαφριά σκιά */
+  -webkit-text-stroke: 1px #000; /* μαύρο stroke για ευκρίνεια */
+  text-shadow: none;
+  font-size:18px;
+  padding:0 6px;
 }
 
-@keyframes scroll { 
-  0%{transform:translateX(100%);} 
-  100%{transform:translateX(-100%);} 
+@keyframes scroll {
+  0%{ transform: translateX(100%); }
+  100%{ transform: translateX(-100%); }
 }
 
 /* =====================
-   Menu
+   Menu (tabs)
+   retro blue background, white letters, orange hover
+   χωρίς επιπλέον πλαίσιο
 ===================== */
-.menu { display:flex; justify-content:center; gap:12px; margin:12px 0; }
+.menu {
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  margin:12px 0;
+}
 
 .menu a {
-  padding:8px 14px; 
-  background:#0033cc; /* retro μπλε */
-  color:#ffffff; /* λευκά γράμματα */
-  text-decoration:none; 
-  font-weight:bold; 
+  padding:8px 14px;
+  background:#0033cc;   /* retro blue */
+  color:#ffffff;       /* white letters */
+  text-decoration:none;
+  font-weight:bold;
   font-family: 'Super Comic', monospace;
-  text-shadow: 1px 1px 2px #000;
-  -webkit-text-stroke: 0.5px #fff; /* λευκό stroke */
-  border-radius: 4px;
-  transition: all 0.2s ease;
+  text-shadow: 0 1px 0 rgba(0,0,0,0.4); /* ελαφριά βάθος για ευκρίνεια */
+  -webkit-text-stroke: 0;
+  border-radius: 6px;
+  transition: all 160ms ease;
+  box-shadow: none; /* remove extra box */
 }
 
-.menu a:hover, .menu a:focus {
-  background: #ff6600; /* πορτοκαλί */
-  color: #000000; /* μαύρα γράμματα */
-  text-shadow: 1px 1px 2px #fff;
+.menu a:hover,
+.menu a:focus {
+  background: #ff6600;  /* orange hover (neon vibe) */
+  color: #000000;       /* black letters when hovered */
+  text-shadow: none;
 }
+
+/* =====================
+   Intro (κάτω από τα tabs)
+   — θέλεις την ίδια γραμματοσειρά με τον τίτλο (Komigo3D)
+     και μια παιχνιδιάρικη χρωματική επεξεργασία
+===================== */
+.intro {
+  text-align:center;
+  padding:14px 10px;
+  color:#ffffff;
+  font-size:18px;
+  font-family: 'Komigo3D', Impact, sans-serif; /* χρήση γραμματοσειράς τίτλου εδώ */
+  margin-bottom:6px;
+}
+
+/* εμφανισιακός "accent" για το intro κείμενο */
+.intro p {
+  margin:0;
+  color: #00ffd5;              /* neon cyan για retro vibe */
+  font-size:18px;
+  letter-spacing: 0.5px;
+  text-shadow: 0 2px 0 rgba(0,0,0,0.5); /* subtle contrast shadow to stand out */
+}
+
+/* sparkle image */
+.spark { position:absolute; left:8px; top:6px; width:48px; opacity:0.9; }
 
 /* =====================
    Stage / Sprites
 ===================== */
-#stage { 
-  position: relative; 
-  width: 100%; 
-  height: 420px; 
-  max-width: 1000px; 
-  margin: 14px auto; 
-  overflow: hidden; 
-  background: rgba(0,0,0,0.45); 
+#stage {
+  position: relative;
+  width: 100%;
+  height: 420px;
+  max-width: 1000px;
+  margin: 14px auto;
+  overflow: hidden;
+  background: rgba(0,0,0,0.45);
 }
 
 #stage .background {
-  position: absolute;
+  position:absolute;
   top:0;
   left:0;
   width:100%;
   height:100%;
   z-index:0;
-  object-fit: cover;
+  object-fit:cover;
 }
 
-.sprite { 
-  position: absolute; 
-  pointer-events:none; 
+/* sprite basics */
+.sprite {
+  position:absolute;
+  pointer-events:none;
   z-index:10;
-  transition: none; 
+  transition: none;
 }
 
-/* Τοποθέτηση δίπλα-δίπλα στην ίδια ευθεία */
+/* Τοποθέτηση δίπλα-δίπλα στην ίδια ευθεία
+   (μπορείς να προσαρμόσεις left/right/top/width αν χρειαστεί) */
 #hero1 { left: 50px; top: 180px; width: 180px; transform: scaleX(1); } /* Spider-Man */
 #hero2 { left: 250px; top: 180px; width: 140px; transform: scaleX(1); } /* Wolverine */
 #hero3 { right: 250px; top: 180px; width: 220px; transform: scaleX(-1); } /* Cyclops */
 #hero4 { right: 50px; top: 180px; width: 180px; transform: scaleX(-1); } /* Venom */
 
 /* =====================
-   Intro & Spark
+   Products Page styles
 ===================== */
-.intro { 
-  text-align:center; 
-  padding:10px; 
-  color:#ffffff; 
-  font-size:18px; 
+.products {
+  max-width: 1000px;
+  margin: 20px auto;
+  padding: 10px;
+  text-align: center;
+}
+
+.products h2 {
+  font-family: 'Komigo3D', Impact, sans-serif;
+  font-size: 36px;
+  color: #ff4444;
+  margin-bottom: 18px;
+}
+
+.product-list {
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:20px;
+  padding: 10px 6px;
+}
+
+.product {
+  background: rgba(0,0,0,0.55);
+  padding:10px;
+  width:220px;
+  border-radius:8px;
+  text-align:center;
   font-family: 'Super Comic', monospace;
-  text-shadow: none;
+  color:#fff;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.6);
+  border: 1px solid rgba(255,255,255,0.04);
+}
+
+.product img {
+  width:100%;
+  height:auto;
+  border-radius:4px;
+  margin-bottom:8px;
+  display:block;
+}
+
+.product h3 {
+  font-size:20px;
+  margin:6px 0;
+  color:#ffd700; /* golden titles */
   -webkit-text-stroke: 0;
 }
 
-.spark { 
-  position:absolute; 
-  left:8px; 
-  top:6px; 
-  width:48px; 
-  opacity:0.85; 
+.product p {
+  font-size:14px;
+  margin:4px 0;
+  color:#e6f7ff;
+}
+
+.product .price {
+  font-weight:bold;
+  color:#ff6600; /* orange price accent */
+  margin-top:6px;
 }
 
 /* =====================
@@ -163,33 +252,37 @@ header h1 {
   margin: 40px auto;
   width: 90%;
   max-width: 700px;
-  background: rgba(0, 0, 0, 0.55);
+  background: rgba(0,0,0,0.55);
   padding: 20px;
   text-align: center;
   font-family: 'Super Comic', monospace;
-  text-shadow: none;
-  -webkit-text-stroke: 0;
   color: #ffffff;
+  border-radius:8px;
 }
 
 .contact-box h2 {
   font-family: 'Komigo3D', Impact, sans-serif;
-  font-size: 36px;
+  font-size: 32px;
   color: #ff4444;
-  text-shadow: none;
-  -webkit-text-stroke: 0;
-  margin-bottom: 15px;
+  margin-bottom:12px;
 }
 
 /* =====================
    Footer
 ===================== */
-footer { 
-  text-align:center; 
-  padding:8px; 
-  font-size:12px; 
-  color:#ffffff; 
+footer {
+  text-align:center;
+  padding:8px;
+  font-size:12px;
+  color:#ffffff;
   font-family: 'Super Comic', monospace;
-  text-shadow: none;
-  -webkit-text-stroke: 0;
+}
+
+/* Responsive tweaks */
+@media (max-width:640px) {
+  header h1 { font-size:32px; }
+  .marquee span { font-size:14px; }
+  #stage { height: 360px; }
+  #hero1,#hero2,#hero3,#hero4 { width: 28vw !important; } /* responsive sprite sizing */
+  .product { width: 46%; }
 }
