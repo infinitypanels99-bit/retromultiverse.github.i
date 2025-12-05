@@ -1,58 +1,17 @@
-const characters = [
-  {name:'spiderman', file:'images/spiderman.gif'},
-  {name:'wolverine', file:'images/wolverine.gif'},
-  {name:'cyclops', file:'images/cyclops.gif'},
-  {name:'venom', file:'images/venom.gif'}
-];
+window.addEventListener('load', () => {
+    const stage = document.getElementById('stage');
 
-const stage = document.getElementById('stage');
+    // Επιβεβαίωση ότι οι χαρακτήρες είναι μέσα στο stage
+    const heroes = [
+        document.getElementById('hero1'), // Spider-Man
+        document.getElementById('hero2'), // Wolverine
+        document.getElementById('hero3'), // Cyclops
+        document.getElementById('hero4')  // Venom
+    ];
 
-function spawnChar(char) {
-  const el = document.createElement('img');
-  el.src = char.file;
-  el.className = 'sprite';
-  
-  // Αρχική τυχαία θέση top
-  el.style.top = (50 + Math.random() * 300) + 'px';
-  
-  // Τυχαίο μέγεθος
-  el.style.width = 140 + Math.floor(Math.random()*60) + 'px';
-  
-  // Αρχική θέση αριστερά ή δεξιά
-  const fromLeft = Math.random() > 0.5;
-  el.style.left = fromLeft ? '-220px' : stage.clientWidth + 'px';
-  
-  stage.appendChild(el);
-
-  // Προορισμός για κίνηση
-  const targetX = fromLeft ? (50 + Math.random()* (stage.clientWidth - 200)) : (Math.random()*(stage.clientWidth-200));
-  const duration = 3000 + Math.random()*3000;
-
-  el.animate([
-    { transform: `translateX(0px) rotate(0deg)` },
-    { transform: `translateX(${fromLeft ? targetX + 250 : -targetX - 250}px) rotate(${fromLeft ? 10 : -10}deg)` }
-  ], { duration: duration, easing: 'ease-in-out' });
-
-  // Fade out μετά την κίνηση
-  setTimeout(()=> {
-    el.animate([{ opacity:1 }, { opacity:0 }], { duration:800 }).onfinish = () => el.remove();
-  }, duration - 600);
-}
-
-// Σταδιακή εμφάνιση τυχαίων χαρακτήρων
-function popRandom() {
-  const c = characters[Math.floor(Math.random()*characters.length)];
-  spawnChar(c);
-  setTimeout(popRandom, 1500 + Math.random()*2500);
-}
-
-window.addEventListener('load', ()=> {
-  // Αρχική εμφάνιση όλων των χαρακτήρων
-  setTimeout(()=> spawnChar(characters[0]), 500);
-  setTimeout(()=> spawnChar(characters[1]), 1100);
-  setTimeout(()=> spawnChar(characters[2]), 1800);
-  setTimeout(()=> spawnChar(characters[3]), 2600);
-
-  // Συνεχής τυχαία “pop”
-  setTimeout(popRandom, 4000);
+    heroes.forEach(hero => {
+        if (!hero) {
+            console.warn('Missing hero element in stage:', hero);
+        }
+    });
 });
