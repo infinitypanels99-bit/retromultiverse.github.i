@@ -6,69 +6,66 @@
   <title>Comicas Retro</title>
   <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-<div id="page">
+  <div id="page">
 
-  <header>
-    <h1 id="title">RETRO MULTIVERSE</h1>
-    <div class="marquee"><span>Rare Comics • Retro Games • Mystery Boxes</span></div>
-  </header>
+    <!-- HEADER -->
+    <header>
+      <h1>RETRO MULTIVERSE</h1>
+      <div class="marquee"><span>Rare Comics • Retro Games • Mystery Boxes</span></div>
+    </header>
 
-  <nav class="menu">
-    <a href="index.html" id="homeBtn">HOME</a>
-    <a href="comics.html">COMICS</a>
-    <a href="#">RETRO GAMES</a>
-    <a href="#">MYSTERY BOX</a>
-    <a href="#contact-box">CONTACT</a>
-  </nav>
+    <!-- MENU -->
+    <nav class="menu">
+      <a href="index.html">HOME</a>
+      <a href="#">COMICS</a>
+      <a href="#">RETRO GAMES</a>
+      <a href="#">MYSTERY BOX</a>
+      <a href="#contact-section">CONTACT</a>
+    </nav>
 
-  <main>
-
+    <!-- INTRO TEXT -->
     <section class="intro">
       <img src="images/sparkle.gif" class="spark" alt="">
       <p>Step into the Retro Multiverse — Where Heroes Never Fade!</p>
     </section>
 
+    <!-- STAGE (ΗΡΩΕΣ) -->
     <section id="stage">
+
       <img src="images/newyork.gif" class="background" alt="New York">
 
-      <img src="images/spiderman.gif" class="sprite hero" id="hero1" alt="">
-      <img src="images/wolverine.gif" class="sprite hero" id="hero2" alt="">
-      <img src="images/cyclops.gif" class="sprite hero" id="hero3" alt="">
-      <img src="images/venom.gif" class="sprite hero" id="hero4" alt="">
+      <img src="images/spiderman.gif" class="sprite hero" id="hero1" alt="Spider-Man">
+      <img src="images/wolverine.gif" class="sprite hero" id="hero2" alt="Wolverine">
+      <img src="images/cyclops.gif" class="sprite hero" id="hero3" alt="Cyclops">
+      <img src="images/venom.gif" class="sprite hero" id="hero4" alt="Venom">
+
     </section>
 
-    <!-- OUR COMICS BOX -->
-    <section id="our-comics-box" class="info-box">
-      <h2>OUR COMICS</h2>
-      <div class="comics-grid">
-        <div class="comic-item">Amazing Spider-Man #1</div>
-        <div class="comic-item">X-Men Vol.1 Classic</div>
-        <div class="comic-item">Wolverine Limited Series</div>
-        <div class="comic-item">Venom: Lethal Protector</div>
+    <!-- CONTACT SECTION (ΚΑΤΩ ΑΠΟ ΤΟΥΣ ΗΡΩΕΣ) -->
+    <section id="contact-section">
+
+      <div class="contact-box">
+        <h2>Contact Me</h2>
+
+        <p><strong>Email:</strong> yourmail@example.com</p>
+        <p><strong>Instagram:</strong> @comicas</p>
+        <p><strong>TikTok:</strong> @comicas</p>
+        <p><strong>YouTube:</strong> Comicas Channel</p>
+
       </div>
+      
     </section>
 
-    <!-- CONTACT BOX -->
-    <section id="contact-box" class="info-box">
-      <h2>CONTACT</h2>
-      <p>Email: retrocomics@gmail.com</p>
-      <p>Instagram: @comicas</p>
-      <p>We ship worldwide!</p>
-    </section>
+    <!-- FOOTER -->
+    <footer>
+      <p>Best viewed in 800x600 • Comicas ©</p>
+    </footer>
 
-  </main>
+  </div>
 
-  <footer>
-    <p>Best viewed in 800x600 • Comicas ©</p>
-  </footer>
-</div>
-
-<script>
-  // Refresh button στον τίτλο
-  document.getElementById("title").onclick = () => location.reload();
-</script>
-
+  <script src="script.js"></script>
 </body>
+</html>
+
 </html>
