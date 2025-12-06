@@ -18,6 +18,7 @@ window.addEventListener('load', () => {
 /* ============================
    COMICS IMAGE CAROUSEL
 ============================ */
+window.addEventListener('load', () => {
 document.querySelectorAll('.comic-card').forEach(card => {
     const slider = card.querySelector('.comic-slider');
     const images = slider.querySelectorAll('img');
