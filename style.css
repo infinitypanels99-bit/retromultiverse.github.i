@@ -277,28 +277,35 @@ footer {
 /* ============================
    COMIC CAROUSEL CARDS
 ============================ */
-.comic-card {
-  position: relative;
-  width: 260px;
-  background: rgba(0,0,0,0.4);
-  padding: 10px;
-  border: 2px solid #003366;
-  border-radius: 8px;
-  box-shadow: 0 0 12px rgba(0,0,0,0.7);
-}
-
 .comic-slider {
   display: flex;
+  transition: transform 0.3s ease;
   width: 100%;
   overflow: hidden;
-  position: relative;
 }
 
 .comic-slider img {
-  flex: 0 0 100%;
+  flex-shrink: 0;
   width: 100%;
   height: auto;
 }
+
+.prev, .next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 30px;
+  color: #ffd700;
+  background: rgba(0,0,0,0.5);
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  user-select: none;
+}
+
+.prev { left: 10px; }
+.next { right: 10px; }
+
 
 /* Buttons */
 .slide-btn {
