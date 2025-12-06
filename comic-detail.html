@@ -3,55 +3,151 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Comicas Retro - Comic Detail</title>
+  <title>Comic Detail</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* =====================
+       Comic Detail Styling
+    ====================== */
+    body {
+      text-align: center;
+    }
+
+    .comic-container {
+      max-width: 900px;
+      margin: 20px auto;
+    }
+
+    .main-image, .sub-images, .price-box, .description-box {
+      background: rgba(0,0,0,0.6);
+      border: 2px solid #003366;
+      border-radius: 8px;
+      padding: 10px;
+      margin: 15px auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .main-image img {
+      max-width: 90%;
+      height: auto;
+      border-radius: 6px;
+    }
+
+    .sub-images {
+      gap: 15px;
+      display: flex;
+    }
+
+    .sub-images img {
+      max-width: 45%;
+      height: auto;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .sub-images img:hover {
+      transform: scale(1.05);
+      border: 2px solid #ffd700;
+    }
+
+    .price-box {
+      color: #ffd700;
+      font-family: 'Komigo3D', sans-serif;
+      font-size: 20px;
+      font-weight: bold;
+      text-shadow: 2px 2px 0 #000;
+    }
+
+    .description-box {
+      color: #e6f7ff;
+      font-family: "Super Comic", sans-serif;
+      font-size: 16px;
+      text-align: left;
+      max-width: 85%;
+    }
+
+    .back-button {
+      display: inline-block;
+      margin: 20px;
+      padding: 8px 15px;
+      background: #001f3f;
+      color: #ffd700;
+      border: 2px solid #ff4444;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s ease;
+    }
+
+    .back-button:hover {
+      background: #003366;
+      color: #fff;
+    }
+  </style>
 </head>
 <body>
-  <div id="page">
 
-    <header>
-      <h1>RETRO MULTIVERSE</h1>
-      <div class="marquee"><span>Rare Comics • Retro Games • Mystery Boxes</span></div>
-    </header>
+  <header>
+    <h1>RETRO MULTIVERSE</h1>
+    <div class="marquee"><span>Rare Comics • Retro Games • Mystery Boxes</span></div>
+  </header>
 
-    <nav class="menu">
-      <a href="index.html">HOME</a>
-      <a href="comics.html">COMICS</a>
-      <a href="retro.html">RETRO GAMES</a>
-      <a href="mystery.html">MYSTERY BOX</a>
-      <a href="#contact-section">CONTACT</a>
-    </nav>
+  <nav class="menu">
+    <a href="index.html">HOME</a>
+    <a href="comics.html">COMICS</a>
+    <a href="retro.html">RETRO GAMES</a>
+    <a href="mystery.html">MYSTERY BOX</a>
+    <a href="#contact-section">CONTACT</a>
+  </nav>
 
-    <main>
-      <section class="comic-detail">
-        <h2 id="comic-title"></h2>
-        <div class="comic-images">
-          <img id="main-img" src="" alt="">
-        </div>
-        <div class="comic-thumbs">
-          <img class="thumb" src="" alt="">
-          <img class="thumb" src="" alt="">
-        </div>
-        <p class="comic-price" id="comic-price"></p>
-        <p class="comic-desc" id="comic-desc"></p>
-      </section>
-    </main>
-
-    <section id="contact-section">
-      <div class="contact-box">
-        <h2>Contact Me</h2>
-        <p>Email: example@mail.com</p>
-        <p>Instagram: @yourhandle</p>
-        <p>TikTok: @yourtiktok</p>
+  <main>
+    <div class="comic-container">
+      <!-- Μεγάλη Κεντρική Εικόνα -->
+      <div class="main-image">
+        <img id="main-img" src="images/comics/TASM issue 800 variant edition 1.jpg" alt="The Amazing Spider-Man #800 Variant Edition">
       </div>
-    </section>
 
-    <footer>
-      <p>RETRO MULTIVERSE - ALL RIGHTS RESERVED ©</p>
-    </footer>
+      <!-- Δύο Μικρότερες Εικόνες -->
+      <div class="sub-images">
+        <img src="images/comics/TASM issue 800 variant edition 2.jpg" alt="The Amazing Spider-Man #800 - 2" onclick="swapMain(this)">
+        <img src="images/comics/TASM issue 800 variant edition 3.jpg" alt="The Amazing Spider-Man #800 - 3" onclick="swapMain(this)">
+      </div>
 
-  </div>
+      <!-- Τιμή -->
+      <div class="price-box">
+        €12.99
+      </div>
 
-  <script src="comic-detail.js"></script>
+      <!-- Περιγραφή -->
+      <div class="description-box">
+        <p>Αυτό είναι το μοναδικό variant edition του The Amazing Spider-Man #800, με σπάνιες συλλεκτικές εικόνες και εξώφυλλο υψηλής ποιότητας. Ιδανικό για κάθε συλλέκτη κόμικς!</p>
+      </div>
+
+      <a class="back-button" href="comics.html">← Επιστροφή στη συλλογή</a>
+    </div>
+  </main>
+
+  <section id="contact-section">
+    <div class="contact-box">
+      <h2>Contact Me</h2>
+      <p>Email: example@mail.com</p>
+      <p>Instagram: @yourhandle</p>
+      <p>TikTok: @yourtiktok</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>RETRO MULTIVERSE - ALL RIGHTS RESERVED ©</p>
+  </footer>
+
+  <script>
+    function swapMain(el) {
+      const mainImg = document.getElementById('main-img');
+      mainImg.src = el.src;
+    }
+  </script>
 </body>
 </html>
