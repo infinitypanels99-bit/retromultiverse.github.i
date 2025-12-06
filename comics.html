@@ -30,32 +30,47 @@
         <div class="comics-grid">
 
           <!-- ΚΟΜΙΚ 1 -->
-          <div class="comic-card" onclick="openGallery([
-            'images/comics/TASM issue 800 variant edition 1.jpg',
-            'images/comics/TASM issue 800 variant edition 2.jpg',
-            'images/comics/TASM issue 800 variant edition 3.jpg'
-          ])">
-            <img src="images/comics/TASM issue 800 variant edition 1.jpg" alt="">
+          <div class="comic-card">
+
+            <div class="comic-slider">
+              <img src="images/comics/TASM issue 800 variant edition 1.jpg">
+              <img src="images/comics/TASM issue 800 variant edition 2.jpg">
+              <img src="images/comics/TASM issue 800 variant edition 3.jpg">
+            </div>
+
+            <button class="slide-btn prev">❮</button>
+            <button class="slide-btn next">❯</button>
+
             <p>The Amazing Spider-Man #800 Variant Edition</p>
           </div>
 
           <!-- ΚΟΜΙΚ 2 -->
-          <div class="comic-card" onclick="openGallery([
-            'images/comics/Batman issue 500 1.jpg',
-            'images/comics/Batman issue 500 2.jpg',
-            'images/comics/Batman issue 500 3.jpg'
-          ])">
-            <img src="images/comics/Batman issue 500 1.jpg" alt="">
+          <div class="comic-card">
+
+            <div class="comic-slider">
+              <img src="images/comics/Batman issue 500 1.jpg">
+              <img src="images/comics/Batman issue 500 2.jpg">
+              <img src="images/comics/Batman issue 500 3.jpg">
+            </div>
+
+            <button class="slide-btn prev">❮</button>
+            <button class="slide-btn next">❯</button>
+
             <p>Batman #500</p>
           </div>
 
           <!-- ΚΟΜΙΚ 3 -->
-          <div class="comic-card" onclick="openGallery([
-            'images/comics/Moonknight issue 20 1.jpg',
-            'images/comics/Moonknight issue 20 2.jpg',
-            'images/comics/Moonknight issue 20 3.jpg'
-          ])">
-            <img src="images/comics/Moonknight issue 20 1.jpg" alt="">
+          <div class="comic-card">
+
+            <div class="comic-slider">
+              <img src="images/comics/Moonknight issue 20 1.jpg">
+              <img src="images/comics/Moonknight issue 20 2.jpg">
+              <img src="images/comics/Moonknight issue 20 3.jpg">
+            </div>
+
+            <button class="slide-btn prev">❮</button>
+            <button class="slide-btn next">❯</button>
+
             <p>Moonknight #20</p>
           </div>
 
@@ -63,46 +78,12 @@
       </section>
     </main>
 
-    <!-- 🔥 GALLERY POPUP -->
-    <div id="lightbox" class="lightbox" onclick="closeGallery()">
-      <span class="close">&times;</span>
-      <img id="lightbox-img" src="">
-      <div class="nav prev" onclick="event.stopPropagation(); prevImage()">&#10094;</div>
-      <div class="nav next" onclick="event.stopPropagation(); nextImage()">&#10095;</div>
-    </div>
-
     <footer>
       <p>RETRO MULTIVERSE - ALL RIGHTS RESERVED ©</p>
     </footer>
 
   </div>
 
-  <!-- 🔥 SCRIPT ΓΙΑ ΤΗΝ GALLERY -->
-  <script>
-    let galleryImages = [];
-    let currentIndex = 0;
-
-    function openGallery(images) {
-      galleryImages = images;
-      currentIndex = 0;
-      document.getElementById('lightbox').style.display = 'flex';
-      document.getElementById('lightbox-img').src = images[0];
-    }
-
-    function closeGallery() {
-      document.getElementById('lightbox').style.display = 'none';
-    }
-
-    function nextImage() {
-      currentIndex = (currentIndex + 1) % galleryImages.length;
-      document.getElementById('lightbox-img').src = galleryImages[currentIndex];
-    }
-
-    function prevImage() {
-      currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
-      document.getElementById('lightbox-img').src = galleryImages[currentIndex];
-    }
-  </script>
-
+  <script src="script.js"></script>
 </body>
 </html>
