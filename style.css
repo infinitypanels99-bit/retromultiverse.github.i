@@ -251,9 +251,9 @@ footer {
   font-size: 16px;
 }
 
-/* ============================
-   COMICS GALLERY GRID
-============================ */
+/* =====================
+   Comics Page / Carousel
+===================== */
 .comics-gallery {
   text-align: center;
   padding: 20px;
@@ -261,35 +261,49 @@ footer {
 
 .gallery-title {
   font-family: 'Komigo3D', sans-serif;
-  font-size: 40px;
-  color: #ff4444;
+  font-size: 36px;
+  color: #ffd700;
   text-shadow: 2px 2px 0 #000;
+  margin-bottom: 20px;
 }
 
 .comics-grid {
-  margin-top: 20px;
   display: flex;
-  justify-content: center;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 20px;
 }
 
-/* ============================
-   COMIC CAROUSEL CARDS
-============================ */
+.comic-card {
+  position: relative;
+  width: 220px;
+  background: rgba(0,0,0,0.6);
+  padding: 10px;
+  border: 2px solid #003366;
+  border-radius: 6px;
+  transition: transform 0.2s ease;
+}
+
+.comic-card:hover {
+  transform: scale(1.05);
+  border-color: #ffd700;
+}
+
 .comic-slider {
   display: flex;
-  transition: transform 0.3s ease;
-  width: 100%;
   overflow: hidden;
+  width: 100%;
 }
 
 .comic-slider img {
   flex-shrink: 0;
   width: 100%;
   height: auto;
+  border-radius: 4px;
+  display: block;
 }
 
+/* Βελάκια */
 .prev, .next {
   position: absolute;
   top: 50%;
@@ -299,38 +313,20 @@ footer {
   background: rgba(0,0,0,0.5);
   padding: 5px 10px;
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: 4px;
   user-select: none;
 }
 
-.prev { left: 10px; }
-.next { right: 10px; }
-
-
-/* Buttons */
-.slide-btn {
-  position: absolute;
-  top: 45%;
-  transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.6);
-  border: none;
-  color: #ffd700;
-  font-size: 26px;
-  padding: 4px 10px;
-  cursor: pointer;
-  border-radius: 4px;
-}
-
-.slide-btn:hover {
-  background: rgba(0, 0, 0, 0.9);
+.prev:hover, .next:hover {
+  background: rgba(0,0,0,0.8);
 }
 
 .prev { left: 5px; }
 .next { right: 5px; }
 
 .comic-card p {
-  margin-top: 10px;
-  color: #fff;
+  margin-top: 8px;
+  color: #ffd700;
   font-family: "Super Comic", sans-serif;
-  font-size: 18px;
+  font-size: 16px;
 }
