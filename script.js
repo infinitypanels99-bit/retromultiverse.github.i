@@ -15,6 +15,8 @@ window.addEventListener('load', () => {
 
 
 });
+document.addEventListener("DOMContentLoaded", () => {
+
 // ----------------------
 // CART SYSTEM
 // ----------------------
@@ -113,3 +115,4 @@ function displayCart() {
 if (document.getElementById("cart-items")) {
   displayCart();
 }
+});
