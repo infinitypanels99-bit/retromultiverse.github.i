@@ -366,3 +366,25 @@ footer {
   color: #ffd700;
   font-family: 'Komigo3D';
 }
+/* Cart Icon Global Styling */
+.cart-icon {
+position: fixed;
+top: 20px;
+right: 20px;
+background: white;
+padding: 10px 15px;
+border-radius: 10px;
+box-shadow: 0 0 10px rgba(0,0,0,0.2);
+cursor: pointer;
+font-weight: bold;
+z-index: 999;
+}
+
+
+.cart-icon span {
+background: red;
+color: white;
+padding: 3px 8px;
+border-radius: 50%;
+margin-left: 5px;
+}
