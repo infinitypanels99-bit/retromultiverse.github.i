@@ -1,4 +1,6 @@
-// Object με όλα τα comics
+// ----------------------
+// COMICS DATA
+// ----------------------
 const comics = {
   tasm800: {
     title: "The Amazing Spider-Man #800 Variant Edition",
@@ -7,7 +9,7 @@ const comics = {
       "images/comics/TASM issue 800 variant edition 2.jpg",
       "images/comics/TASM issue 800 variant edition 3.jpg"
     ],
-    price: "€12.99",
+    price: "12.99",
     desc: "Special variant edition of Spider-Man #800 with exclusive cover art."
   },
   batman500: {
@@ -17,7 +19,7 @@ const comics = {
       "images/comics/Batman issue 500 2.jpg",
       "images/comics/Batman issue 500 3.jpg"
     ],
-    price: "€15.50",
+    price: "15.50",
     desc: "Classic Batman issue #500 featuring key storyline."
   },
   moonknight20: {
@@ -27,37 +29,33 @@ const comics = {
       "images/comics/Moonknight issue 20 2.jpg",
       "images/comics/Moonknight issue 20 3.jpg"
     ],
-    price: "€10.00",
+    price: "10.00",
     desc: "Moonknight issue #20 with a thrilling plot twist."
   }
 };
 
-// Παίρνουμε το id από το URL
+// ----------------------
+// GET COMIC ID FROM URL
+// ----------------------
 const params = new URLSearchParams(window.location.search);
 const comicId = params.get('id');
 
-if (comics[comicId]) {
+if (!comics[comicId]) {
+  document.querySelector(".comic-detail").innerHTML = "<p>Comic not found.</p>";
+} else {
   const comic = comics[comicId];
 
-  const comicData = comic; // δημιουργεί global αντικείμενο για το κουμπί
-document.querySelector(".add-to-cart-btn").addEventListener("click", () => {
-    addToCart({
-        title: comic.title,
-        price: parseFloat(comic.price.replace("€","")),
-        img: comic.images[0]
-    });
-});
-
-
+  // Populate the page
   document.getElementById("comic-title").textContent = comic.title;
   document.getElementById("main-img").src = comic.images[0];
   document.getElementById("main-img").alt = comic.title;
-  document.getElementById("comic-price").textContent = comic.price;
+  document.getElementById("comic-price").textContent = "€" + comic.price;
   document.getElementById("comic-desc").textContent = comic.desc;
 
+  // Thumbnails
   const thumbs = document.querySelectorAll(".comic-thumbs .thumb");
   thumbs.forEach((thumb, index) => {
-    if(comic.images[index + 1]) { // οι υπόλοιπες εικόνες
+    if(comic.images[index + 1]) {
       thumb.src = comic.images[index + 1];
       thumb.alt = comic.title + " " + (index + 2);
       thumb.addEventListener("click", () => {
@@ -67,6 +65,53 @@ document.querySelector(".add-to-cart-btn").addEventListener("click", () => {
       thumb.style.display = "none";
     }
   });
-} else {
-  document.querySelector(".comic-detail").innerHTML = "<p>Comic not found.</p>";
+
+  // Add to Cart Button
+  const addBtn = document.querySelector(".add-to-cart-btn");
+  if (addBtn) {
+    addBtn.addEventListener("click", () => {
+      addToCart({
+        title: comic.title,
+        price: parseFloat(comic.price),
+        img: comic.images[0]
+      });
+    });
+  }
+}
+
+// ----------------------
+// CART SYSTEM (shared)
+// ----------------------
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+function addToCart(item) {
+  cart.push(item);
+  localStorage.setItem("cart", JSON.stringify(cart));
+  updateCartCount();
+  showCartPopup(item.title);
+}
+
+function updateCartCount() {
+  const cartCountElems = document.querySelectorAll('.cart-count');
+  cartCountElems.forEach(span => span.textContent = cart.length);
+}
+updateCartCount();
+
+function showCartPopup(title) {
+  const popup = document.createElement("div");
+  popup.className = "cart-popup";
+  popup.innerHTML = `
+    <div class="cart-popup-box">
+      <h3>✔ Το προσθέσατε στο καλάθι!</h3>
+      <p><strong>${title}</strong></p>
+      <div class="popup-buttons">
+        <button id="continueBtn">Συνέχεια στο Shop</button>
+        <button id="goToCartBtn">Μετάβαση στο Καλάθι</button>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(popup);
+
+  document.getElementById("continueBtn").onclick = () => popup.remove();
+  document.getElementById("goToCartBtn").onclick = () => window.location.href = "cart.html";
 }
