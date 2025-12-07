@@ -1,15 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="el">
 <head>
     <meta charset="UTF-8">
-    <title>Your Cart</title>
+    <title>Your Cart - Retro Multiverse</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <header class="main-header">
-    <h1 class="site-title">COMICAS</h1>
-    <a href="index.html" class="back-btn">← Back</a>
+    <h1 class="site-title">RETRO MULTIVERSE</h1>
+    <a href="comics.html" class="back-btn">← Back to Shop</a>
+    <div class="cart-icon" onclick="window.location.href='cart.html'">
+        🛒 Cart <span class="cart-count">0</span>
+    </div>
 </header>
 
 <h2 class="cart-title">Your Cart</h2>
@@ -17,9 +20,12 @@
 <div id="cart-items" class="cart-container"></div>
 
 <div class="cart-total">
-    <h3>Total: €<span id="cart-total">0</span></h3>
+    <h3>Total: €<span id="cart-total">0.00</span></h3>
 </div>
 
 <script src="script.js"></script>
+<script>
+displayCart(); // Εμφάνιση καλαθιού κατά το φόρτωμα
+</script>
 </body>
 </html>
