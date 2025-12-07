@@ -39,6 +39,16 @@ const comicId = params.get('id');
 if (comics[comicId]) {
   const comic = comics[comicId];
 
+  const comicData = comic; // δημιουργεί global αντικείμενο για το κουμπί
+document.querySelector(".add-to-cart-btn").addEventListener("click", () => {
+    addToCart({
+        title: comic.title,
+        price: parseFloat(comic.price.replace("€","")),
+        img: comic.images[0]
+    });
+});
+
+
   document.getElementById("comic-title").textContent = comic.title;
   document.getElementById("main-img").src = comic.images[0];
   document.getElementById("main-img").alt = comic.title;
