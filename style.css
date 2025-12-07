@@ -42,11 +42,11 @@ header {
 }
 
 header h1 {
-  font-family: 'Komigo3D', Impact, sans-serif; /* σωστή γραμματοσειρά */
-  color: #ff4444; /* κόκκινο */
+  font-family: 'Komigo3D', Impact, sans-serif;
+  color: #ff4444;
   font-size: 48px;
   margin: 0;
-  text-shadow: 3px 3px 0 #000; /* optional βάθος */
+  text-shadow: 3px 3px 0 #000;
 }
 
 /* =====================
@@ -56,14 +56,14 @@ header h1 {
   margin-top: 6px;
   overflow: hidden;
   height: 26px;
-  border: none; /* αν υπήρχε πλαίσιο */
+  border: none;
 }
 
 .marquee span {
   display: inline-block;
   white-space: nowrap;
   animation: scroll 12s linear infinite;
-  color: #ffd700; /* χρυσό */
+  color: #ffd700;
   font-weight: bold;
 }
 
@@ -71,6 +71,7 @@ header h1 {
   0% { transform: translateX(100%); }
   100% { transform: translateX(-100%); }
 }
+
 /* =====================
    Menu / Tabs
 ===================== */
@@ -93,11 +94,10 @@ header h1 {
   transition: all 0.3s ease;
 }
 
-/* Hover effect για τα tabs */
 .menu a:hover {
   background-color: #001f3f;
-  color: #ffd700; /* χρυσό όταν περνάει ο κέρσορας */
-  border-color: #ff4444; /* κόκκινο περίγραμμα */
+  color: #ffd700;
+  border-color: #ff4444;
 }
 
 /* =====================
@@ -114,7 +114,6 @@ header h1 {
   overflow: hidden;
 }
 
-/* Background GIF */
 #stage .background {
   position: absolute;
   top:0;
@@ -125,22 +124,20 @@ header h1 {
   object-fit: cover;
 }
 
-/* Hero Sprites */
 .sprite {
   position: absolute;
   pointer-events:none;
   filter: drop-shadow(4px 6px 4px rgba(0,0,0,0.8));
   z-index:10;
-  transition: none; /* σταθερά, χωρίς κίνηση */
 }
 
 /* =====================
-   Τοποθέτηση Ήρωες
+   Hero Placement
 ===================== */
-#hero1 { left: 50px; top: 220px; width: 180px; transform: scaleX(1); } /* Spider-Man */
-#hero2 { left: 250px; top: 200px; width: 140px; transform: scaleX(1); } /* Wolverine */
-#hero3 { right: 250px; top: 200px; width: 160px; transform: scaleX(-1); } /* Cyclops */
-#hero4 { right: 50px; top: 220px; width: 180px; transform: scaleX(-1); } /* Venom */
+#hero1 { left: 50px; top: 220px; width: 180px; transform: scaleX(1); }
+#hero2 { left: 250px; top: 200px; width: 140px; transform: scaleX(1); }
+#hero3 { right: 250px; top: 200px; width: 160px; transform: scaleX(-1); }
+#hero4 { right: 50px; top: 220px; width: 180px; transform: scaleX(-1); }
 
 /* =====================
    Intro & Spark
@@ -148,9 +145,9 @@ header h1 {
 .intro {
   text-align:center;
   padding:10px;
-  color:#ffd700; /* διαφορετικό χρώμα */
+  color:#ffd700;
   font-size:18px;
-  font-family: 'Komigo3D', sans-serif; /* ίδιο font με τίτλο */
+  font-family: 'Komigo3D', sans-serif;
 }
 
 .spark {
@@ -167,7 +164,7 @@ header h1 {
 #contact-section {
   margin: 40px auto;
   max-width: 600px;
-  text-align:center; /* κεντράρισμα */
+  text-align:center;
 }
 
 .contact-box {
@@ -176,7 +173,7 @@ header h1 {
   color: #fff;
   padding: 20px;
   border-radius: 8px;
-  display: inline-block; /* για να μείνει στο κέντρο */
+  display: inline-block;
 }
 
 .contact-box h2 {
@@ -200,10 +197,10 @@ footer {
   font-size:12px;
   color:#aaa;
 }
+
 /* =====================
    Comics Page
 ===================== */
-
 .comics-gallery {
   text-align: center;
   padding: 20px;
@@ -238,14 +235,6 @@ footer {
   border-color: #ffd700;
 }
 
-.comic-card .price {
-  color: #ffffff; /* λευκό χρώμα */
-  font-weight: bold;
-  margin-top: 4px;
-  font-size: 16px;
-
-}
-
 .comic-card img {
   width: 100%;
   height: auto;
@@ -257,4 +246,123 @@ footer {
   color: #ffd700;
   font-weight: bold;
   font-size: 16px;
+}
+
+.comic-card .price {
+  color: #ffffff;
+  font-weight: bold;
+  margin-top: 4px;
+  font-size: 16px;
+}
+
+/* =====================================================
+   🛒 CART SYSTEM — ΝΕΑ ΚΟΜΜΑΤΙΑ ΠΟΥ ΖΗΤΗΣΕΣ
+===================================================== */
+
+/* --- Header Cart Icon --- */
+.cart-icon {
+  position: absolute;
+  right: 20px;
+  top: 18px;
+  font-size: 26px;
+  color: #ffd700;
+  text-decoration: none;
+}
+
+#cart-count {
+  background: red;
+  color: white;
+  padding: 3px 8px;
+  border-radius: 50%;
+  font-size: 14px;
+  margin-left: 6px;
+}
+
+/* --- Add to Cart Button --- */
+.add-to-cart-btn {
+  margin-top: 20px;
+  background: #ff3030;
+  color: white;
+  border: 2px solid #a00;
+  padding: 12px 22px;
+  font-size: 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: 'Komigo3D';
+  text-shadow: 1px 1px 0 #000;
+}
+
+.add-to-cart-btn:hover {
+  background: #ff0000;
+}
+
+/* --- Cart Page Styles --- */
+.cart-title {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 34px;
+  font-family: 'Komigo3D';
+  color: #ffd700;
+}
+
+.cart-container {
+  width: 80%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.cart-item {
+  display: flex;
+  background: rgba(0,0,0,0.6);
+  padding: 15px;
+  border: 2px solid #003366;
+  border-radius: 12px;
+  align-items: center;
+  gap: 20px;
+}
+
+.cart-item img {
+  width: 120px;
+  height: auto;
+  border-radius: 6px;
+  border: 2px solid #111;
+}
+
+.cart-details {
+  flex: 1;
+}
+
+.cart-details h3 {
+  margin: 0;
+  color: #ffd700;
+}
+
+.cart-details p {
+  margin: 4px 0 0 0;
+  color: white;
+  font-size: 18px;
+}
+
+.remove-btn {
+  background: #ff3b3b;
+  color: white;
+  border: 2px solid #a00;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: 'Komigo3D';
+}
+
+.remove-btn:hover {
+  background: #ff0000;
+}
+
+.cart-total {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 28px;
+  color: #ffd700;
+  font-family: 'Komigo3D';
 }
