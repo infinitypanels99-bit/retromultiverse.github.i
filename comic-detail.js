@@ -9,7 +9,7 @@ const comics = {
       "images/comics/TASM issue 800 variant edition 2.jpg",
       "images/comics/TASM issue 800 variant edition 3.jpg"
     ],
-    price: "€12.99",
+    price: "12.99",
     desc: "Special variant edition of Spider-Man #800 with exclusive cover art."
   },
   batman500: {
@@ -19,7 +19,7 @@ const comics = {
       "images/comics/Batman issue 500 2.jpg",
       "images/comics/Batman issue 500 3.jpg"
     ],
-    price: "€15.50",
+    price: "15.50",
     desc: "Classic Batman issue #500 featuring key storyline."
   },
   moonknight20: {
@@ -29,128 +29,89 @@ const comics = {
       "images/comics/Moonknight issue 20 2.jpg",
       "images/comics/Moonknight issue 20 3.jpg"
     ],
-    price: "€10.00",
+    price: "10.00",
     desc: "Moonknight issue #20 with a thrilling plot twist."
   }
 };
 
 // ----------------------
-// LOAD COMIC
+// GET COMIC ID FROM URL
 // ----------------------
 const params = new URLSearchParams(window.location.search);
 const comicId = params.get('id');
 
-if (comics[comicId]) {
-    const comic = comics[comicId];
-
-    const mainImg = document.getElementById("main-img");
-    const titleElem = document.getElementById("comic-title");
-    const priceElem = document.getElementById("comic-price");
-    const descElem = document.getElementById("comic-desc");
-
-    // Main image = cover
-    mainImg.src = comic.images[0];
-    mainImg.alt = comic.title;
-
-    // Fill title, price, description
-    titleElem.textContent = comic.title;
-    priceElem.textContent = comic.price;
-    descElem.textContent = comic.desc;
-
-    // ----------------------
-    // THUMBNAILS
-    // ----------------------
-    const thumbsContainer = document.querySelector(".comic-thumbs");
-    thumbsContainer.innerHTML = ""; // καθαρίζουμε
-
-    comic.images.forEach((imgSrc, index) => {
-        if (!imgSrc) return;
-        const thumb = document.createElement("img");
-        thumb.className = "thumb";
-        thumb.src = imgSrc;
-        thumb.alt = comic.title + " " + (index + 1);
-
-        thumb.addEventListener("click", () => {
-            mainImg.src = imgSrc;
-        });
-
-        thumbsContainer.appendChild(thumb);
-    });
+if (!comics[comicId]) {
+  document.querySelector(".comic-detail").innerHTML = "<p>Comic not found.</p>";
 } else {
-    document.querySelector(".comic-detail").innerHTML = "<p>Comic not found.</p>";
+  const comic = comics[comicId];
+
+  // Populate the page
+  document.getElementById("comic-title").textContent = comic.title;
+  document.getElementById("main-img").src = comic.images[0];
+  document.getElementById("main-img").alt = comic.title;
+  document.getElementById("comic-price").textContent = "€" + comic.price;
+  document.getElementById("comic-desc").textContent = comic.desc;
+
+  // Thumbnails
+  const thumbs = document.querySelectorAll(".comic-thumbs .thumb");
+  thumbs.forEach((thumb, index) => {
+    if(comic.images[index + 1]) {
+      thumb.src = comic.images[index + 1];
+      thumb.alt = comic.title + " " + (index + 2);
+      thumb.addEventListener("click", () => {
+        document.getElementById("main-img").src = comic.images[index + 1];
+      });
+    } else {
+      thumb.style.display = "none";
+    }
+  });
+
+  // Add to Cart Button
+  const addBtn = document.querySelector(".add-to-cart-btn");
+  if (addBtn) {
+    addBtn.addEventListener("click", () => {
+      addToCart({
+        title: comic.title,
+        price: parseFloat(comic.price),
+        img: comic.images[0]
+      });
+    });
+  }
 }
 
 // ----------------------
-// CART SYSTEM
+// CART SYSTEM (shared)
 // ----------------------
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
+function addToCart(item) {
+  cart.push(item);
+  localStorage.setItem("cart", JSON.stringify(cart));
+  updateCartCount();
+  showCartPopup(item.title);
+}
+
 function updateCartCount() {
-    const cartCountElems = document.querySelectorAll('.cart-count');
-    cartCountElems.forEach(span => span.textContent = cart.length);
+  const cartCountElems = document.querySelectorAll('.cart-count');
+  cartCountElems.forEach(span => span.textContent = cart.length);
 }
+updateCartCount();
 
-function saveCart() {
-    localStorage.setItem("cart", JSON.stringify(cart));
-    updateCartCount();
-}
-
-function addToCart(title, price, img) {
-    cart.push({ title, price, img });
-    saveCart();
-    showCartPopup(title);
-}
-
-// ----------------------
-// POPUP
-// ----------------------
 function showCartPopup(title) {
-    const popup = document.createElement("div");
-    popup.className = "cart-popup";
-    popup.innerHTML = `
-        <div class="cart-popup-box">
-            <h3>✔ Added to Cart!</h3>
-            <p><strong>${title}</strong></p>
-            <div class="popup-buttons">
-                <button id="continueBtn">Continue Shopping</button>
-                <button id="goToCartBtn">Go to Cart</button>
-            </div>
-        </div>
-    `;
-    document.body.appendChild(popup);
+  const popup = document.createElement("div");
+  popup.className = "cart-popup";
+  popup.innerHTML = `
+    <div class="cart-popup-box">
+      <h3>✔ Το προσθέσατε στο καλάθι!</h3>
+      <p><strong>${title}</strong></p>
+      <div class="popup-buttons">
+        <button id="continueBtn">Συνέχεια στο Shop</button>
+        <button id="goToCartBtn">Μετάβαση στο Καλάθι</button>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(popup);
 
-    document.getElementById("continueBtn").onclick = () => popup.remove();
-    document.getElementById("goToCartBtn").onclick = () => window.location.href = "cart.html";
+  document.getElementById("continueBtn").onclick = () => popup.remove();
+  document.getElementById("goToCartBtn").onclick = () => window.location.href = "cart.html";
 }
-
-// ----------------------
-// ADD TO CART BUTTON
-// ----------------------
-document.addEventListener("DOMContentLoaded", () => {
-    updateCartCount();
-
-    // Αν υπάρχει κουμπί στο comic-detail
-    const addBtn = document.querySelector(".add-to-cart-btn");
-    if (addBtn && comics[comicId]) {
-        const mainImg = document.getElementById("main-img");
-        const titleElem = document.getElementById("comic-title");
-        const priceElem = document.getElementById("comic-price");
-
-        addBtn.addEventListener("click", () => {
-            const title = titleElem ? titleElem.textContent : "Comic";
-            const price = priceElem ? parseFloat(priceElem.textContent.replace("€","")) : 0;
-            const img = mainImg ? mainImg.src : "";
-            addToCart(title, price, img);
-        });
-    }
-
-    // Επιπλέον: ενημέρωση όλων των κουμπιών .add-to-cart (π.χ. comics.html)
-    document.querySelectorAll(".add-to-cart").forEach(btn => {
-        btn.addEventListener("click", () => {
-            const title = btn.dataset.title;
-            const price = parseFloat(btn.dataset.price);
-            const img = btn.dataset.img;
-            addToCart(title, price, img);
-        });
-    });
-});
