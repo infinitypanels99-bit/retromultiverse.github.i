@@ -18,78 +18,30 @@ window.addEventListener('load', () => {
 // ----------------------
 // CART SYSTEM
 // ----------------------
-function loadCart() {
-    return JSON.parse(localStorage.getItem("cart")) || [];
-}
 
-function saveCart(cart) {
+// Load cart from localStorage ή create empty array
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+// ----------------------
+// FUNCTIONS
+// ----------------------
+
+// Προσθήκη προϊόντος στο cart
+function addToCart(item) {
+    cart.push(item);
     localStorage.setItem("cart", JSON.stringify(cart));
     updateCartCount();
+    showCartPopup(item.title);
 }
 
+// Ενημέρωση αριθμού στο cart icon
 function updateCartCount() {
-    const cart = loadCart();
-    const countElement = document.getElementById("cart-count");
-    if (countElement) countElement.textContent = cart.length;
+    const cartCountElems = document.querySelectorAll('.cart-count');
+    cartCountElems.forEach(span => span.textContent = cart.length);
 }
-
-// Add item
-// --- GLOBAL CART HANDLING ---
-
-
-// Load cart from localStorage or create empty array
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-
-// Update cart icon counter
-function updateCartCount() {
-const cartCount = document.querySelector('.cart-count');
-if (cartCount) {
-cartCount.textContent = cart.length;
-}
-}
-
-
 updateCartCount();
 
-
-// Add an item to cart
-function addToCart(product) {
-cart.push(product);
-localStorage.setItem("cart", JSON.stringify(cart));
-updateCartCount();
-alert("Added to cart!");
-}
-
-
-// Trigger from button
-const addToCartBtn = document.querySelector("#addToCartBtn");
-if (addToCartBtn) {
-addToCartBtn.addEventListener("click", () => {
-const productData = {
-title: document.querySelector('.comic-title')?.textContent || "Comic",
-price: document.querySelector('.comic-price')?.textContent || "0",
-image: document.querySelector('.main-image')?.src || ""
-};
-
-
-addToCart(productData);
-});
-/* =====================
-   Add to Cart System
-===================== */
-
-// Φόρτωση υπάρχοντος cart από localStorage
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-// Συνάρτηση: Προσθήκη στο καλάθι
-function addToCart(product) {
-    cart.push(product);
-    localStorage.setItem("cart", JSON.stringify(cart));
-    showCartPopup(product.title);
-}
-
-// Popup ενημέρωσης
+// Popup επιβεβαίωσης
 function showCartPopup(title) {
     const popup = document.createElement("div");
     popup.className = "cart-popup";
@@ -103,29 +55,74 @@ function showCartPopup(title) {
             </div>
         </div>
     `;
-
     document.body.appendChild(popup);
 
-    document.getElementById("continueBtn").onclick = () => {
-        popup.remove();
-    };
-
-    document.getElementById("goToCartBtn").onclick = () => {
-        window.location.href = "cart.html";
-    };
+    document.getElementById("continueBtn").onclick = () => popup.remove();
+    document.getElementById("goToCartBtn").onclick = () => window.location.href = "cart.html";
 }
 
-// Εύρεση όλων των κουμπιών "Add to Cart"
+// Εμφάνιση cart στο cart.html
+function displayCart() {
+    const cartContainer = document.getElementById("cart-items");
+    const cartTotalElem = document.getElementById("cart-total");
+
+    if (!cartContainer || !cartTotalElem) return;
+
+    cartContainer.innerHTML = "";
+    let total = 0;
+
+    cart.forEach((item, index) => {
+        const div = document.createElement("div");
+        div.className = "cart-item";
+        div.innerHTML = `
+            <img src="${item.img}" alt="${item.title}">
+            <div class="cart-details">
+                <h3>${item.title}</h3>
+                <p>€${item.price.toFixed(2)}</p>
+            </div>
+            <button class="remove-btn" data-index="${index}">Remove</button>
+        `;
+        cartContainer.appendChild(div);
+        total += parseFloat(item.price);
+    });
+
+    cartTotalElem.textContent = total.toFixed(2);
+
+    // Remove item buttons
+    document.querySelectorAll(".remove-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const index = btn.dataset.index;
+            cart.splice(index, 1);
+            localStorage.setItem("cart", JSON.stringify(cart));
+            displayCart();
+            updateCartCount();
+        });
+    });
+}
+
+// ----------------------
+// COMICS.HTML Add to Cart Buttons
+// ----------------------
 document.querySelectorAll(".add-to-cart").forEach(btn => {
     btn.addEventListener("click", () => {
         const title = btn.dataset.title;
-        const price = btn.dataset.price;
+        const price = parseFloat(btn.dataset.price);
         const img = btn.dataset.img;
 
-        addToCart({
-            title: title,
-            price: parseFloat(price),
-            img: img
-        });
+        addToCart({ title, price, img });
     });
 });
+
+// ----------------------
+// COMIC-DETAIL.HTML Add to Cart Button
+// ----------------------
+const comicDetailBtn = document.querySelector(".add-to-cart-btn");
+if (comicDetailBtn && typeof comic !== "undefined") {
+    comicDetailBtn.addEventListener("click", () => {
+        addToCart({
+            title: comic.title,
+            price: parseFloat(comic.price.replace("€", "")),
+            img: comic.images[0]
+        });
+    });
+}
