@@ -20,123 +20,98 @@ document.addEventListener("DOMContentLoaded", () => {
 // ----------------------
 // CART SYSTEM
 // ----------------------
-document.addEventListener("DOMContentLoaded", () => {
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-    // Φόρτωση υπάρχοντος cart από localStorage
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+// Προσθήκη προϊόντος στο cart
+function addToCart(item) {
+  cart.push(item);
+  localStorage.setItem("cart", JSON.stringify(cart));
+  updateCartCount();
+  showCartPopup(item.title);
+}
 
-    // Ενημέρωση του cart count σε όλα τα pages
-    function updateCartCount() {
-        const countElements = document.querySelectorAll('.cart-count');
-        countElements.forEach(el => el.textContent = cart.length);
-    }
+// Ενημέρωση cart count στο header
+function updateCartCount() {
+  const cartCountElems = document.querySelectorAll('.cart-count');
+  cartCountElems.forEach(span => span.textContent = cart.length);
+}
+updateCartCount();
 
-    updateCartCount();
+// Popup επιβεβαίωσης
+function showCartPopup(title) {
+  const popup = document.createElement("div");
+  popup.className = "cart-popup";
+  popup.innerHTML = `
+    <div class="cart-popup-box">
+      <h3>✔ Το προσθέσατε στο καλάθι!</h3>
+      <p><strong>${title}</strong></p>
+      <div class="popup-buttons">
+        <button id="continueBtn">Συνέχεια στο Shop</button>
+        <button id="goToCartBtn">Μετάβαση στο Καλάθι</button>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(popup);
 
-    // Αποθήκευση cart στο localStorage
-    function saveCart() {
-        localStorage.setItem("cart", JSON.stringify(cart));
-        updateCartCount();
-    }
+  document.getElementById("continueBtn").onclick = () => popup.remove();
+  document.getElementById("goToCartBtn").onclick = () => window.location.href = "cart.html";
+}
 
-    // Προσθήκη προϊόντος στο cart
-    function addToCart(product) {
-        cart.push(product);
-        saveCart();
-        showCartPopup(product.title);
-    }
+// ----------------------
+// COMICS.HTML: Add to Cart Buttons
+// ----------------------
+document.querySelectorAll(".add-to-cart").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const title = btn.dataset.title;
+    const price = parseFloat(btn.dataset.price);
+    const img = btn.dataset.img;
 
-    // Popup ενημέρωσης
-    function showCartPopup(title) {
-        const popup = document.createElement("div");
-        popup.className = "cart-popup";
-        popup.innerHTML = `
-            <div class="cart-popup-box">
-                <h3>✔ Added to Cart!</h3>
-                <p><strong>${title}</strong></p>
-                <div class="popup-buttons">
-                    <button id="continueBtn">Continue Shopping</button>
-                    <button id="goToCartBtn">Go to Cart</button>
-                </div>
-            </div>
-        `;
-        document.body.appendChild(popup);
-
-        document.getElementById("continueBtn").onclick = () => popup.remove();
-        document.getElementById("goToCartBtn").onclick = () => window.location.href = "cart.html";
-    }
-
-    // =====================
-    // Κουμπιά στη σελίδα comics.html
-    // =====================
-    document.querySelectorAll(".add-to-cart").forEach(btn => {
-        btn.addEventListener("click", () => {
-            const title = btn.dataset.title;
-            const price = parseFloat(btn.dataset.price);
-            const img = btn.dataset.img;
-
-            addToCart({ title, price, img });
-
-            // ΑΜΕΣΗ ενημέρωση cart count
-            const countElements = document.querySelectorAll('.cart-count');
-            countElements.forEach(el => el.textContent = cart.length);
-        });
-    });
-
-    // =====================
-    // Κουμπί στη σελίδα comic-detail.html
-    // =====================
-    const detailBtn = document.querySelector(".add-to-cart-btn");
-    if (detailBtn && window.comicData) {
-        detailBtn.addEventListener("click", () => {
-            addToCart({
-                title: comicData.title,
-                price: parseFloat(comicData.price.replace('€', '')),
-                img: comicData.images[0]
-            });
-        });
-    }
-
-    // =====================
-    // Προβολή cart στη σελίδα cart.html
-    // =====================
-    const cartContainer = document.getElementById("cart-items");
-    const cartTotalElement = document.getElementById("cart-total");
-
-    function renderCart() {
-        if (!cartContainer || !cartTotalElement) return;
-
-        cartContainer.innerHTML = "";
-        let total = 0;
-
-        cart.forEach((item, index) => {
-            total += parseFloat(item.price);
-
-            const cartItem = document.createElement("div");
-            cartItem.className = "cart-item";
-            cartItem.innerHTML = `
-                <img src="${item.img}" alt="${item.title}">
-                <div class="cart-details">
-                    <h3>${item.title}</h3>
-                    <p>€${item.price.toFixed(2)}</p>
-                </div>
-                <button class="remove-btn" data-index="${index}">Remove</button>
-            `;
-            cartContainer.appendChild(cartItem);
-        });
-
-        cartTotalElement.textContent = total.toFixed(2);
-
-        // Remove item
-        cartContainer.querySelectorAll(".remove-btn").forEach(btn => {
-            btn.addEventListener("click", () => {
-                const idx = btn.dataset.index;
-                cart.splice(idx, 1);
-                saveCart();
-                renderCart();
-            });
-        });
-    }
-
-    renderCart();
+    addToCart({ title, price, img });
+  });
 });
+
+// ----------------------
+// CART.HTML: Display cart items
+// ----------------------
+function displayCart() {
+  const cartContainer = document.getElementById("cart-items");
+  const cartTotalElem = document.getElementById("cart-total");
+
+  if (!cartContainer || !cartTotalElem) return;
+
+  cartContainer.innerHTML = "";
+  let total = 0;
+
+  cart.forEach((item, index) => {
+    const div = document.createElement("div");
+    div.className = "cart-item";
+    div.innerHTML = `
+      <img src="${item.img}" alt="${item.title}">
+      <div class="cart-details">
+        <h3>${item.title}</h3>
+        <p>€${item.price.toFixed(2)}</p>
+      </div>
+      <button class="remove-btn" data-index="${index}">Remove</button>
+    `;
+    cartContainer.appendChild(div);
+    total += parseFloat(item.price);
+  });
+
+  cartTotalElem.textContent = total.toFixed(2);
+
+  // Remove buttons
+  document.querySelectorAll(".remove-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const index = btn.dataset.index;
+      cart.splice(index, 1);
+      localStorage.setItem("cart", JSON.stringify(cart));
+      displayCart();
+      updateCartCount();
+    });
+  });
+}
+
+// Εμφάνιση cart στο load αν είμαστε στο cart.html
+if (document.getElementById("cart-items")) {
+  displayCart();
+}
